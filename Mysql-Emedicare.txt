@@ -1,0 +1,153 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1167
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use new;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_new |
++---------------+
+| admin         |
+| cart          |
+| contact_us    |
+| medicines     |
+| user          |
++---------------+
+5 rows in set (0.00 sec)
+
+mysql> desc admin;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| admin_id | int          | NO   | PRI | NULL    | auto_increment |
+| admin    | varchar(255) | YES  |     | NULL    |                |
+| password | varchar(255) | YES  |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc cart;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| medicine_id   | int          | NO   | PRI | NULL    |       |
+| description   | varchar(255) | YES  |     | NULL    |       |
+| medicine_name | varchar(255) | YES  |     | NULL    |       |
+| price         | int          | NO   |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc contact_us;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| c_id        | int          | NO   | PRI | NULL    | auto_increment |
+| contact_no  | bigint       | NO   |     | NULL    |                |
+| description | varchar(255) | YES  |     | NULL    |                |
+| email_id    | varchar(255) | YES  |     | NULL    |                |
+| name        | varchar(255) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> desc medicines;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| medicine_id      | int          | NO   | PRI | NULL    | auto_increment |
+| description      | varchar(255) | YES  |     | NULL    |                |
+| expdate          | varchar(255) | YES  |     | NULL    |                |
+| manufacture_date | varchar(255) | YES  |     | NULL    |                |
+| medicine_name    | varchar(255) | YES  |     | NULL    |                |
+| price            | int          | NO   |     | NULL    |                |
+| seller           | varchar(255) | YES  |     | NULL    |                |
+| status           | varchar(255) | YES  |     | NULL    |                |
+| stock            | varchar(255) | YES  |     | NULL    |                |
+| type             | varchar(255) | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> desc user;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| user_id    | int          | NO   | PRI | NULL    | auto_increment |
+| age        | int          | NO   |     | NULL    |                |
+| first_name | varchar(255) | YES  |     | NULL    |                |
+| gender     | varchar(255) | YES  |     | NULL    |                |
+| last_name  | varchar(255) | YES  |     | NULL    |                |
+| mobile_no  | varchar(255) | YES  |     | NULL    |                |
+| password   | varchar(255) | YES  |     | NULL    |                |
+| username   | varchar(255) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from user where    user_ id>0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id>0' at line 1
+mysql> delete from users;
+ERROR 1146 (42S02): Table 'new.users' doesn't exist
+mysql> delete from user;
+Query OK, 5 rows affected (0.02 sec)
+
+mysql> select* from admin;
++----------+-------+----------+
+| admin_id | admin | password |
++----------+-------+----------+
+|        1 | abc   | 123@     |
+|        2 | Haru  | Haru@123 |
++----------+-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select* from  cart;
++-------------+-------------+---------------+-------+
+| medicine_id | description | medicine_name | price |
++-------------+-------------+---------------+-------+
+|           2 | headache    | dolo          |    21 |
+|           1 | wound       | zincoderm     |    90 |
+|           3 | sprain      | volini        |    56 |
+|           4 | body pain   | Iodex         |    36 |
+|           5 | Anestesia   | And1          |    79 |
++-------------+-------------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select* from contact_us;
++------+------------+-----------------------+--------------------+---------+
+| c_id | contact_no | description           | email_id           | name    |
++------+------------+-----------------------+--------------------+---------+
+|    1 | 1234567891 | Good Medicines        | harinik7@gmail.com | HariniK |
+|    2 | 7092028561 | Cheaper               | haru@gmail.com     | Haru    |
+|    3 | 9944726521 | Best delivery support | sairam@gmail.com   | Sairam  |
+|    4 | 7981236543 | Customer support      | vikki@gmail.com    | Vignesh |
++------+------------+-----------------------+--------------------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select* from medicines;
++-------------+----------------------------+------------+------------------+---------------+-------+---------------------+-----------+---------+----------+
+| medicine_id | description                | expdate    | manufacture_date | medicine_name | price | seller              | status    | stock   | type     |
++-------------+----------------------------+------------+------------------+---------------+-------+---------------------+-----------+---------+----------+
+|           1 | For headache and body pain | 25-02-2024 | 22-02-2022       | dolo          |    27 | medicare pharmacy   | available | NULL    | tablet   |
+|           2 | heal wounds                | 2024-07-18 | 2021-07-27       | Zincoderm     |    45 | Zinc pharmacuticals | Yes       | Present | Ointment |
+|           3 | Body pain                  | 2024-08-18 | 2024-07-25       | moov          |    60 | moov factories      | yes       | present | ointment |
++-------------+----------------------------+------------+------------------+---------------+-------+---------------------+-----------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select* from user;
++---------+-----+------------+--------+--------------+------------+----------+----------+
+| user_id | age | first_name | gender | last_name    | mobile_no  | password | username |
++---------+-----+------------+--------+--------------+------------+----------+----------+
+|      16 |  13 | Siva       | Male   | Kandasamy    | 9970920456 | Siva%12# | Siva     |
+|      15 |  20 | Jerin      | Female | Joseph       | 7092026185 | Jerin#41 | Jerin    |
+|      14 |  22 | Harini     | Female | Kandasamy    | 7092028561 | Haru2123 | Haru     |
+|      13 |  23 | Savitha    | Female | Chandrasekar | 9944626190 | Savi@123 | Savitha  |
++---------+-----+------------+--------+--------------+------------+----------+----------+
+4 rows in set (0.00 sec)
+
+mysql>
