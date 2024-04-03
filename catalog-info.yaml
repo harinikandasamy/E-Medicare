@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: E-Medicare
+  annotations:
+    github.com/project-slug: harinikandasamy/E-Medicare
+spec:
+  type: other
+  lifecycle: unknown
+  owner: harinikandasamy
